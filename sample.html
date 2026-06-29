@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DHRITI — Beyond Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #0F1F3D;
+    --navy-light: #162444;
+    --silver: #C0C8D8;
+    --silver-light: #E8ECF2;
+    --gold: #C9A84C;
+    --golwindow.addEventListend-light: #E2C06A;
+    --white: #FFFFFF;
+    --text-muted: #8A96AA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {dhriti2025
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 5%;
+    transition: all 0.4s ease;
+    height: 72px;
+    display: flex; align-items: center;
+  }
+  header.scrolled {
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .header-inner {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-wrap { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem; letter-spacing: 0.12em; color: var(--white);
+    text-decoration: none;
+  }
+  .logo-motto {
+    font-size: 0.6rem; letter-spacing: 0.25em; color: var(--gold);
+    text-transform: uppercase; margin-top: 1px;
+  }
+  nav { display: flex; align-items: center; gap: 2.2rem; }
+  nav a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--silver);
+    text-decoration: none; position: relative; transition: color 0.3s;
+  }
+  nav a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s ease;
+  }
+  nav a:hover { color: var(--white); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 20%, rgba(192,200,216,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--navy) 0%, #091425 100%);
+  }
+  /* Diagonal slash accent */
+  .hero-slash {
+    position: absolute; top: 0; right: -10%;
+    width: 55%; height: 100%;
+    background: linear-gradient(105deg, transparent 48%, rgba(201,168,76,0.03) 48%, rgba(201,168,76,0.03) 52%, transparent 52%);
+    pointer-events: none;
+  }
+  .hero-slash-2 {
+    position: absolute; bottom: -5%; left: -5%;
+    width: 50%; height: 60%;
+    background: linear-gradient(105deg, transparent 45%, rgba(192,200,216,0.025) 45%, rgba(192,200,216,0.025) 50%, transparent 50%);
+    pointer-events: none;
+  }
+  /* Grid lines */
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(192,200,216,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192,200,216,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2; padding: 0 5%;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.4em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    letter-spacing: 0.08em; line-height: 0.9;
+    background: linear-gradient(180deg, var(--white) 40%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    opacity: 0; animation: fadeUp 1s 0.4s forwards;
+  }
+  .hero-slash-line {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin: 1.2rem 0;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-slash-line .line { height: 1px; width: 60px; background: var(--gold); }
+  .hero-motto {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase;
+  }
+  .hero-desc {
+    font-size: clamp(0.85rem, 1.5vw, 1rem); color: var(--silver);
+    line-height: 1.85; max-width: 560px; margin: 1.8rem auto 2.5rem;
+    font-weight: 300; opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.2rem; background: var(--gold);
+    color: var(--navy); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    padding: 0.85rem 2.2rem; background: transparent;
+    color: var(--silver); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(192,200,216,0.3); cursor: pointer; transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s 1.4s forwards;
+  }
+  .scroll-text { font-size: 0.6rem; letter-spacing: 0.35em; color: var(--text-muted); text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(var(--gold), transparent); animation: scrollPulse 2s infinite; }
+
+  /* ── COLLECTIONS ── */
+  .collections { background: var(--navy); }
+  .collections-header { margin-bottom: 4rem; }
+  .category-block { margin-bottom: 5rem; }
+  .category-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(192,200,216,0.1);
+  }
+  .category-header-left {}
+  .cat-label { font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.3rem; }
+  .cat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    letter-spacing: 0.06em; color: var(--white);
+  }
+  .cat-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.4rem; max-width: 420px; line-height: 1.6; }
+  .cat-see-more {
+    font-size: 0.68rem; letter-spacing: 0.2em; color: var(--gold);
+    text-transform: uppercase; text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    transition: border-color 0.3s; white-space: nowrap; padding-bottom: 2px;
+    cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .cat-see-more:hover { border-bottom-color: var(--gold); }
+
+  /* ── CATEGORY PAGE ── */
+  #cat-page {
+    display: none; min-height: 100vh; background: var(--navy);
+  }
+  .cat-page-hero {
+    padding: 10rem 5% 4rem;
+    background: linear-gradient(180deg, #091425 0%, var(--navy) 100%);
+    position: relative; overflow: hidden;
+  }
+  .cat-page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(192,200,216,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(192,200,216,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .cat-page-hero-inner { position: relative; z-index: 1; }
+  .cat-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.25em; color: var(--text-muted);
+    text-transform: uppercase; cursor: pointer; background: none; border: none;
+    font-family: 'Inter', sans-serif; transition: color 0.3s; margin-bottom: 2rem;
+    padding: 0;
+  }
+  .cat-back:hover { color: var(--gold); }
+  .cat-page-label { font-size: 0.65rem; letter-spacing: 0.45em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem; }
+  .cat-page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem); letter-spacing: 0.06em; line-height: 1;
+    background: linear-gradient(180deg, var(--white) 40%, rgba(255,255,255,0.5) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .cat-page-desc { font-size: 0.9rem; color: var(--silver); margin-top: 1rem; font-weight: 300; max-width: 500px; line-height: 1.7; }
+  .cat-page-products { padding: 4rem 5% 6rem; }
+  .cat-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .cat-page-count { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(192,200,216,0.08); }
+
+  /* Products grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(192,200,216,0.07);
+    cursor: pointer; transition: all 0.35s ease;
+    position: relative; overflow: hidden; text-decoration: none;
+    display: block;
+  }
+  .product-card::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 2px; background: var(--gold);
+    transition: left 0.35s ease;
+  }
+  .product-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .product-card:hover::before { left: 0; }
+  .product-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: var(--navy-mid); position: relative; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+  .product-img-placeholder {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem;
+  }
+  .placeholder-icon { font-size: 2rem; opacity: 0.2; }
+  .placeholder-text { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+  .product-info { padding: 1rem 1rem 1.1rem; }
+  .product-name { font-size: 0.82rem; font-weight: 500; color: var(--silver-light); margin-bottom: 0.35rem; line-height: 1.4; }
+  .product-price { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold); }
+
+  /* ── BRAND STORY ── */
+  .brand-story {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+    position: relative; overflow: hidden;
+  }
+  .brand-story::before {
+    content: ''; position: absolute; top: 0; right: 0; bottom: 0;
+    width: 45%; background: linear-gradient(105deg, transparent 40%, rgba(201,168,76,0.04) 40%);
+  }
+  .brand-story-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .brand-story-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic; color: var(--silver);
+    line-height: 1.8; border-left: 2px solid var(--gold); padding-left: 1.8rem;
+    margin: 2rem 0;
+  }
+  .brand-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; letter-spacing: 0.05em; color: var(--gold);
+  }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; margin-top: 0.2rem; }
+  .brand-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .brand-visual-box {
+    width: 100%; max-width: 400px; aspect-ratio: 3/4;
+    background: var(--navy-light); border: 1px solid rgba(201,168,76,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem; position: relative; overflow: hidden;
+  }
+  .brand-visual-box::after {
+    content: ''; position: absolute; bottom: -30%; right: -30%;
+    width: 80%; height: 80%; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .brand-visual-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; letter-spacing: 0.15em;
+    background: linear-gradient(180deg, rgba(201,168,76,0.9) 0%, rgba(201,168,76,0.2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .brand-values { list-style: none; margin-top: 2rem; }
+  .brand-values li {
+    font-size: 0.8rem; color: var(--silver); padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(192,200,216,0.06);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .brand-values li::before { content: '▸'; color: var(--gold); font-size: 0.6rem; }
+
+  /* ── CREDIBILITY SECTION ── */
+  .credibility {
+    background: var(--navy);
+    border-top: 1px solid rgba(192,200,216,0.06);
+  }
+  .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; }
+  .cred-item {
+    background: var(--navy-light); padding: 2.5rem 2rem;
+    border: 1px solid rgba(192,200,216,0.06);
+    transition: border-color 0.3s;
+  }
+  .cred-item:hover { border-color: rgba(201,168,76,0.2); }
+  .cred-img-wrap {
+    width: 100%; aspect-ratio: 4/3; background: var(--navy-mid);
+    margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .cred-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .cred-img-placeholder { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+  .cred-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .cred-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(192,200,216,0.06);
+  }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-info { margin-top: 2rem; }
+  .contact-email {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    letter-spacing: 0.08em; color: var(--gold); text-decoration: none;
+    display: block; margin-bottom: 2.5rem; transition: color 0.3s;
+  }
+  .contact-email:hover { color: var(--gold-light); }
+  .social-label { font-size: 0.6rem; letter-spacing: 0.4em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.2rem; }
+  .socials { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .social-btn {
+    width: 42px; height: 42px; border: 1px solid rgba(192,200,216,0.15);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--silver); transition: all 0.3s;
+    font-size: 0.85rem;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+  .contact-right { padding-top: 4rem; }
+  .contact-manifesto {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--silver); line-height: 1.9;
+    border-left: 2px solid rgba(201,168,76,0.3); padding-left: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060F1E; padding: 3rem 5%;
+    border-top: 1px solid rgba(192,200,216,0.06);
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+  .footer-logo .logo-name { font-size: 1.3rem; }
+  .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-nav a { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+  .footer-nav a:hover { color: var(--silver); }
+  .footer-socials { display: flex; gap: 0.6rem; }
+  .footer-socials a { width: 32px; height: 32px; border: 1px solid rgba(192,200,216,0.1); display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; font-size: 0.75rem; transition: all 0.3s; }
+  .footer-socials a:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+  .footer-bottom { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(192,200,216,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.7rem; color: var(--text-muted); }
+  .footer-tagline { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; color: rgba(201,168,76,0.4); }
+
+  /* ── ADMIN PANEL ── */
+  .admin-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(6,15,30,0.95); backdrop-filter: blur(10px);
+    overflow-y: auto;
+  }
+  .admin-overlay.open { display: block; }
+  .admin-panel {
+    max-width: 900px; margin: 0 auto; padding: 3rem 2rem;
+  }
+  .admin-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .admin-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.1em; color: var(--gold); }
+  .admin-close { background: none; border: 1px solid rgba(192,200,216,0.2); color: var(--silver); width: 36px; height: 36px; cursor: pointer; font-size: 1rem; transition: all 0.3s; }
+  .admin-close:hover { border-color: var(--gold); color: var(--gold); }
+  .admin-section { margin-bottom: 2.5rem; }
+  .admin-section-title { font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .admin-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .admin-field label { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
+  .admin-field input, .admin-field textarea, .admin-field select {
+    background: var(--navy-light); border: 1px solid rgba(192,200,216,0.1);
+    color: var(--white); padding: 0.6rem 0.8rem; font-size: 0.82rem; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.3s;
+  }
+  .admin-field input:focus, .admin-field textarea:focus { border-color: rgba(201,168,76,0.4); }
+  .admin-field textarea { resize: vertical; min-height: 70px; }
+  .admin-btn { padding: 0.6rem 1.2rem; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; }
+  .admin-btn-gold { background: var(--gold); color: var(--navy); }
+  .admin-btn-gold:hover { background: var(--gold-light); }
+  .admin-btn-outline { background: transparent; border: 1px solid rgba(192,200,216,0.2); color: var(--silver); }
+  .admin-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .admin-btn-danger { background: transparent; border: 1px solid rgba(220,60,60,0.3); color: #E05555; }
+  .admin-btn-danger:hover { background: rgba(220,60,60,0.1); }
+  .admin-product-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .admin-product-item {
+    background: var(--navy-light); border: 1px solid rgba(192,200,216,0.07);
+    padding: 0.9rem 1rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .admin-product-img { width: 50px; height: 50px; object-fit: cover; background: var(--navy-mid); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .admin-product-img img { width: 100%; height: 100%; object-fit: cover; }
+  .admin-product-img-placeholder { font-size: 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 0.3rem; }
+  .admin-product-info { flex: 1; }
+  .admin-product-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .admin-product-meta { font-size: 0.72rem; color: var(--text-muted); }
+  .admin-product-actions { display: flex; gap: 0.5rem; }
+  .admin-cat-select { margin-bottom: 1rem; }
+  .admin-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .admin-tab { padding: 0.5rem 1rem; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border: 1px solid rgba(192,200,216,0.15); background: transparent; color: var(--text-muted); transition: all 0.3s; }
+  .admin-tab.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.06); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .admin-save-bar { position: sticky; bottom: 0; background: rgba(6,15,30,0.95); backdrop-filter: blur(10px); padding: 1rem 0; border-top: 1px solid rgba(201,168,76,0.15); display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 2rem; }
+  .admin-trigger { position: fixed; bottom: 2rem; right: 2rem; z-index: 500; background: var(--gold); color: var(--navy); border: none; padding: 0.7rem 1.2rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: all 0.3s; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+  .admin-trigger:hover { background: var(--gold-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .ham { display: flex; }
+    .brand-story-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .brand-visual { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-right { padding-top: 0; }
+    .cred-grid { grid-template-columns: 1fr; }
+    .admin-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 5%; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .brand-stats { grid-template-columns: 1fr 1fr; }
+    .admin-product-actions { flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo-wrap" style="text-decoration:none;">
+      <span class="logo-name">DHRITI</span>
+      <span class="logo-motto">Beyond Talent</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-slash-2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Official Sports Fan Merchandise</p>
+    <h1 class="hero-logo" id="hero-name">DHRITI</h1>
+    <div class="hero-slash-line">
+      <span class="line"></span>
+      <span class="hero-motto">Beyond Talent</span>
+      <span class="line"></span>
+    </div>
+    <p class="hero-desc">
+      Celebrating the passion, loyalty, memories, and identity that make sports more than just a game. Wear your story. Own your culture.
+    </p>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="collections-header reveal">
+    <p class="section-label">Our Range</p>
+    <h2 class="section-title">Explore Collections</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Curated fan merchandise built for the ones who live and breathe sports.</p>
+  </div>
+
+  <div id="categories-render"></div>
+</section>
+
+<!-- BRAND STORY -->
+<section class="brand-story" id="brand-story">
+  <div class="brand-story-inner">
+    <div class="brand-text reveal">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">More Than<br>Merchandise</h2>
+      <div class="divider"></div>
+      <p class="section-sub" style="max-width:440px;" id="brand-desc">Built for Fans. Inspired by Passion. Sports are not only about competition — they create memories, build loyalty, forge identity, and connect millions of people across the world.</p>
+      <blockquote class="brand-story-quote" id="brand-quote">
+        "The real victory is in how sports make us feel — the chills, the tears, the pride, the belonging. Dhriti exists to celebrate that."
+      </blockquote>
+      <ul class="brand-values">
+        <li>Fan Culture at the Heart of Everything</li>
+        <li>Premium Craftsmanship, Every Product</li>
+        <li>Sports Memories Preserved in Every Design</li>
+        <li>A Growing Community of Passionate Supporters</li>
+      </ul>
+      <div class="brand-stats">
+        <div class="stat-item"><div class="stat-num" id="stat1-num">4+</div><div class="stat-label" id="stat1-label">Collections</div></div>
+        <div class="stat-item"><div class="stat-num" id="stat2-num">∞</div><div class="stat-label" id="stat2-label">Fan Stories</div></div>
+        <div class="stat-item"><div class="stat-num" id="stat3-num">100%</div><div class="stat-label" id="stat3-label">Fan-Driven</div></div>
+        <div class="stat-item"><div class="stat-num" id="stat4-num">1</div><div class="stat-label" id="stat4-label">Shared Passion</div></div>
+      </div>
+    </div>
+    <div class="brand-visual">
+      <div class="brand-visual-box">
+        <div class="brand-visual-word">DHR</div>
+        <div style="font-size:0.6rem;letter-spacing:0.5em;color:var(--text-muted);text-transform:uppercase;">Beyond Talent</div>
+        <div class="brand-visual-word" style="font-size:3rem;margin-top:0.5rem;">ITI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section class="credibility" id="credibility">
+  <div class="reveal">
+    <p class="section-label">Trust & Quality</p>
+    <h2 class="section-title">Why Dhriti</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Designed with purpose. Made for fans who expect more.</p>
+  </div>
+  <div class="cred-grid reveal" id="cred-grid">
+    <!-- rendered by JS -->
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Find Us</h2>
+      <div class="divider"></div>
+      <div class="contact-info">
+        <a href="mailto:hello@dhriti.in" class="contact-email" id="contact-email">hello@dhriti.in</a>
+        <p class="social-label">Follow the Culture</p>
+        <div class="socials">
+          <a href="#" class="social-btn" id="social-instagram" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-btn" id="social-facebook" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" id="social-youtube" title="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-btn" id="social-x" title="X (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <p class="contact-manifesto" id="contact-manifesto">
+        "Every jersey tells a story. Every chant echoes belonging. Every fan carries a piece of something bigger than themselves. Dhriti is where that feeling lives."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-name" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em;">DHRITI</div>
+      <div class="logo-motto" style="font-size:0.6rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-top:2px;">Beyond Talent</div>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.7rem;max-width:200px;line-height:1.6;" id="footer-desc">A sports fan merchandise brand built for dreamers, supporters, and those who live beyond the game.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#home">Home</a>
+      <a href="#collections">Collections</a>
+      <a href="#brand-story">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-socials">
+      <a href="#" id="footer-ig">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" id="footer-fb">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" id="footer-yt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" id="footer-x">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy" id="footer-copy">© 2025 Dhriti. All rights reserved.</p>
+    <span class="footer-tagline">BEYOND TALENT</span>
+  </div>
+</footer>
+
+<!-- CATEGORY PAGE -->
+<div id="cat-page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="cat-back" onclick="showMainSite()">← Back to Collections</button>
+      <div class="cat-page-label">Collection</div>
+      <h1 class="cat-page-title" id="cat-page-title">Category</h1>
+      <p class="cat-page-desc" id="cat-page-desc"></p>
+    </div>
+  </div>
+  <div class="cat-page-products">
+    <div class="cat-page-count" id="cat-page-count"></div>
+    <div class="cat-page-grid" id="cat-page-grid"></div>
+  </div>
+</div>
+
+<!-- ADMIN TRIGGER -->
+<button class="admin-trigger" onclick="openLoginModal()">⚙ Admin</button>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(6,15,30,0.97);backdrop-filter:blur(10px);align-items:center;justify-content:center;">
+  <div style="background:var(--navy-light);border:1px solid rgba(201,168,76,0.2);padding:2.5rem;width:100%;max-width:360px;margin:1rem;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.3rem;">Admin Login</div>
+    <div style="font-size:0.7rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.8rem;">Dhriti Content Panel</div>
+    <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.2rem;">
+      <label style="font-size:0.68rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;">Password</label>
+      <input id="login-pw" type="password" placeholder="Enter password"
+        style="background:var(--navy);border:1px solid rgba(192,200,216,0.15);color:var(--white);padding:0.7rem 0.9rem;font-size:0.85rem;font-family:'Inter',sans-serif;outline:none;"
+        onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div id="login-err" style="font-size:0.75rem;color:#E05555;margin-bottom:0.8rem;display:none;">Incorrect password. Try again.</div>
+    <div style="display:flex;gap:0.8rem;">
+      <button onclick="doLogin()" style="flex:1;padding:0.7rem;background:var(--gold);color:var(--navy);border:none;font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;">Unlock</button>
+      <button onclick="closeLoginModal()" style="padding:0.7rem 1rem;background:transparent;border:1px solid rgba(192,200,216,0.2);color:var(--silver);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div>
+        <div class="admin-title">DHRITI ADMIN</div>
+        <div style="font-size:0.65rem;color:var(--text-muted);letter-spacing:0.2em;">Content Management Panel</div>
+      </div>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab('tab-products')">Products</button>
+      <button class="admin-tab" onclick="switchTab('tab-categories')">Categories</button>
+      <button class="admin-tab" onclick="switchTab('tab-credibility')">Trust Section</button>
+      <button class="admin-tab" onclick="switchTab('tab-site')">Site Info</button>
+      <button class="admin-tab" onclick="switchTab('tab-social')">Socials</button>
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div class="tab-content active" id="tab-products">
+      <div class="admin-section">
+        <div class="admin-section-title">Add New Product</div>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Category</label>
+            <select id="np-category"></select>
+          </div>
+          <div class="admin-field">
+            <label>Product Name</label>
+            <input type="text" id="np-name" placeholder="e.g. Team Crest Keychain">
+          </div>
+          <div class="admin-field">
+            <label>Price (e.g. ₹299)</label>
+            <input type="text" id="np-price" placeholder="₹299">
+          </div>
+          <div class="admin-field">
+            <label>Image URL</label>
+            <input type="text" id="np-img" placeholder="https://... or leave blank">
+          </div>
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Destination URL (where product links to)</label>
+            <input type="text" id="np-url" placeholder="https://shop.example.com/product">
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <button class="admin-btn admin-btn-gold" onclick="addProduct()">+ Add Product</button>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <div class="admin-section-title">Manage Products</div>
+        <div class="admin-field" style="max-width:250px;margin-bottom:1rem;">
+          <label>Filter by Category</label>
+          <select id="filter-category" onchange="renderProductList()"></select>
+        </div>
+        <div class="admin-product-list" id="admin-product-list"></div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES TAB -->
+    <div class="tab-content" id="tab-categories">
+      <div class="admin-section">
+        <div class="admin-section-title">Add Category</div>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Category Name</label>
+            <input type="text" id="nc-name" placeholder="e.g. Fan Accessories">
+          </div>
+          <div class="admin-field">
+            <label>Description</label>
+            <input type="text" id="nc-desc" placeholder="Short category description">
+          </div>
+          <div class="admin-field">
+            <label>See More Link</label>
+            <input type="text" id="nc-url" placeholder="https://...">
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <button class="admin-btn admin-btn-gold" onclick="addCategory()">+ Add Category</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-title">Current Categories</div>
+        <div id="admin-cat-list"></div>
+      </div>
+    </div>
+
+    <!-- TRUST / CREDIBILITY TAB -->
+    <div class="tab-content" id="tab-credibility">
+      <div class="admin-section">
+        <div class="admin-section-title">Add Trust Item</div>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Title</label>
+            <input type="text" id="nt-title" placeholder="e.g. Genuine Fan Products">
+          </div>
+          <div class="admin-field">
+            <label>Description</label>
+            <textarea id="nt-text" placeholder="Short description of this trust point..."></textarea>
+          </div>
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Image URL (optional)</label>
+            <input type="text" id="nt-img" placeholder="https://... or leave blank">
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <button class="admin-btn admin-btn-gold" onclick="addTrustItem()">+ Add Item</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-title">Current Trust Items</div>
+        <div id="admin-trust-list"></div>
+      </div>
+    </div>
+
+    <!-- SITE INFO TAB -->
+    <div class="tab-content" id="tab-site">
+      <div class="admin-section">
+        <div class="admin-section-title">Brand & About Section</div>
+        <div class="admin-grid">
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Brand Description (About section)</label>
+            <textarea id="s-brand-desc"></textarea>
+          </div>
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Brand Quote</label>
+            <textarea id="s-brand-quote"></textarea>
+          </div>
+          <div class="admin-field">
+            <label>Stat 1 Number</label>
+            <input type="text" id="s-stat1-num">
+          </div>
+          <div class="admin-field">
+            <label>Stat 1 Label</label>
+            <input type="text" id="s-stat1-label">
+          </div>
+          <div class="admin-field">
+            <label>Stat 2 Number</label>
+            <input type="text" id="s-stat2-num">
+          </div>
+          <div class="admin-field">
+            <label>Stat 2 Label</label>
+            <input type="text" id="s-stat2-label">
+          </div>
+          <div class="admin-field">
+            <label>Stat 3 Number</label>
+            <input type="text" id="s-stat3-num">
+          </div>
+          <div class="admin-field">
+            <label>Stat 3 Label</label>
+            <input type="text" id="s-stat3-label">
+          </div>
+          <div class="admin-field">
+            <label>Stat 4 Number</label>
+            <input type="text" id="s-stat4-num">
+          </div>
+          <div class="admin-field">
+            <label>Stat 4 Label</label>
+            <input type="text" id="s-stat4-label">
+          </div>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-title">Contact & Footer</div>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Contact Email</label>
+            <input type="text" id="s-email">
+          </div>
+          <div class="admin-field">
+            <label>Footer Description</label>
+            <input type="text" id="s-footer-desc">
+          </div>
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Contact Manifesto Quote</label>
+            <textarea id="s-manifesto"></textarea>
+          </div>
+          <div class="admin-field" style="grid-column:1/-1">
+            <label>Footer Copyright</label>
+            <input type="text" id="s-copyright">
+          </div>
+        </div>
+      </div>
+      <div class="admin-save-bar">
+        <button class="admin-btn admin-btn-gold" onclick="saveSiteInfo()">Save Site Info</button>
+      </div>
+    </div>
+
+    <!-- SOCIALS TAB -->
+    <div class="tab-content" id="tab-social">
+      <div class="admin-section">
+        <div class="admin-section-title">Social Media Links</div>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Instagram URL</label>
+            <input type="text" id="s-ig" placeholder="https://instagram.com/...">
+          </div>
+          <div class="admin-field">
+            <label>Facebook URL</label>
+            <input type="text" id="s-fb" placeholder="https://facebook.com/...">
+          </div>
+          <div class="admin-field">
+            <label>YouTube URL</label>
+            <input type="text" id="s-yt" placeholder="https://youtube.com/...">
+          </div>
+          <div class="admin-field">
+            <label>X (Twitter) URL</label>
+            <input type="text" id="s-x" placeholder="https://x.com/...">
+          </div>
+        </div>
+      </div>
+      <div class="admin-save-bar">
+        <button class="admin-btn admin-btn-gold" onclick="saveSocials()">Save Socials</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// DATA STORE
+// ─────────────────────────────────────────────
+const LS = key => localStorage.getItem('dhriti_' + key);
+const SS = (key, val) => localStorage.setItem('dhriti_' + key, JSON.stringify(val));
+const GS = key => { try { return JSON.parse(LS(key)); } catch { return null; } };
+
+const DEFAULT_CATEGORIES = [
+  { id: 'c5', name: 'Sportswear', desc: 'Jerseys, tees, hoodies, shorts and performance wear crafted for fans who wear their passion.', seeMoreUrl: '#' },
+  { id: 'c6', name: 'Wearing Accessories', desc: 'Caps, wristbands, lanyards, scarves and wearable fan gear to complete your game-day look.', seeMoreUrl: '#' },
+  { id: 'c1', name: 'Fan Accessories', desc: 'Keychains, badges, stickers, magnets, temporary tattoos and more for the true fan.', seeMoreUrl: '#' },
+  { id: 'c2', name: 'Wall Art & Decor', desc: 'Posters, canvas prints, acrylic frames and decorative sports artwork for your space.', seeMoreUrl: '#' },
+  { id: 'c3', name: 'Drinkware & Desk Essentials', desc: 'Bottles, mugs, coasters and desk accessories to fuel your passion every day.', seeMoreUrl: '#' },
+  { id: 'c4', name: 'Stationery', desc: 'Notebooks, postcards, greeting cards and study accessories for fans who create.', seeMoreUrl: '#' },
+];
+
+const DEFAULT_PRODUCTS = [
+  { id: 'p1', catId: 'c1', name: 'Team Crest Keychain', price: '₹299', img: '', url: '#' },
+  { id: 'p2', catId: 'c1', name: 'Sports Badge Set', price: '₹199', img: '', url: '#' },
+  { id: 'p3', catId: 'c1', name: 'Fan Sticker Pack', price: '₹149', img: '', url: '#' },
+  { id: 'p4', catId: 'c2', name: 'Sports Poster (A3)', price: '₹499', img: '', url: '#' },
+  { id: 'p5', catId: 'c2', name: 'Canvas Artwork Print', price: '₹899', img: '', url: '#' },
+  { id: 'p6', catId: 'c3', name: 'Fan Water Bottle', price: '₹599', img: '', url: '#' },
+  { id: 'p7', catId: 'c3', name: 'Sports Coaster Set', price: '₹349', img: '', url: '#' },
+  { id: 'p8', catId: 'c4', name: 'Fan Notebook', price: '₹249', img: '', url: '#' },
+];
+
+const DEFAULT_TRUST = [
+  { id: 't1', title: 'Fan-First Design', text: 'Every product is built with the fan experience in mind — designed to celebrate your passion, not just sell a product.', img: '' },
+  { id: 't2', title: 'Premium Quality', text: 'We hold every item to high standards. Because your passion for sports deserves nothing less than the best.', img: '' },
+  { id: 't3', title: 'Growing Community', text: 'Dhriti is more than a store — it is a growing community of supporters, dreamers, and sports culture enthusiasts.', img: '' },
+];
+
+const DEFAULT_SITE = {
+  brandDesc: 'Built for Fans. Inspired by Passion. Sports are not only about competition — they create memories, build loyalty, forge identity, and connect millions of people across the world.',
+  brandQuote: '"The real victory is in how sports make us feel — the chills, the tears, the pride, the belonging. Dhriti exists to celebrate that."',
+  stat1Num: '4+', stat1Label: 'Collections',
+  stat2Num: '∞', stat2Label: 'Fan Stories',
+  stat3Num: '100%', stat3Label: 'Fan-Driven',
+  stat4Num: '1', stat4Label: 'Shared Passion',
+  email: 'hello@dhriti.in',
+  footerDesc: 'A sports fan merchandise brand built for dreamers, supporters, and those who live beyond the game.',
+  manifesto: '"Every jersey tells a story. Every chant echoes belonging. Every fan carries a piece of something bigger than themselves. Dhriti is where that feeling lives."',
+  copyright: '© 2025 Dhriti. All rights reserved.',
+};
+
+const DEFAULT_SOCIALS = { ig: '#', fb: '#', yt: '#', x: '#' };
+
+function getCategories() { return GS('categories') || DEFAULT_CATEGORIES; }
+function getProducts()   { return GS('products')   || DEFAULT_PRODUCTS;   }
+function getTrust()      { return GS('trust')       || DEFAULT_TRUST;      }
+function getSite()       { return Object.assign({}, DEFAULT_SITE, GS('site') || {}); }
+function getSocials()    { return Object.assign({}, DEFAULT_SOCIALS, GS('socials') || {}); }
+
+// ─────────────────────────────────────────────
+// RENDER WEBSITE
+// ─────────────────────────────────────────────
+function renderAll() {
+  renderCategories();
+  renderCredibility();
+  renderSiteInfo();
+  renderSocials();
+}
+
+function renderCategories() {
+  const cats = getCategories();
+  const prods = getProducts();
+  const el = document.getElementById('categories-render');
+  if (!el) return;
+  el.innerHTML = cats.map(cat => {
+    const catProds = prods.filter(p => p.catId === cat.id);
+    const homeProds = catProds.slice(-4);
+    const prodCards = homeProds.map(p => `
+      <a class="product-card" href="${p.url || '#'}" target="${p.url && p.url !== '#' ? '_blank' : '_self'}" rel="noopener">
+        <div class="product-img-wrap">
+          ${p.img ? `<img src="${escHtml(p.img)}" alt="${escHtml(p.name)}" loading="lazy">` : `
+            <div class="product-img-placeholder">
+              <div class="placeholder-icon">◈</div>
+              <div class="placeholder-text">Image</div>
+            </div>`}
+        </div>
+        <div class="product-info">
+          <div class="product-name">${escHtml(p.name)}</div>
+          <div class="product-price">${escHtml(p.price)}</div>
+        </div>
+      </a>`).join('');
+            return `
+      <div class="category-block reveal">
+        <div class="category-header">
+          <div class="category-header-left">
+            <div class="cat-label">Collection</div>
+            <div class="cat-title">${escHtml(cat.name)}</div>
+            <div class="cat-desc">${escHtml(cat.desc)}</div>
+          </div>
+          <button class="cat-see-more" onclick="showCategoryPage('${cat.id}')">See More →</button>
+        </div>
+        ${catProds.length > 0
+          ? `<div class="products-grid">${prodCards}</div>`
+          : `<div style="padding:2rem 0;color:var(--text-muted);font-size:0.82rem;letter-spacing:0.15em;text-transform:uppercase;">No products yet — add via Admin panel</div>`}
+      </div>`;
+  }).join('');
+  observeReveal();
+}
+
+function renderCredibility() {
+  const items = getTrust();
+  const el = document.getElementById('cred-grid');
+  if (!el) return;
+  el.innerHTML = items.map(t => `
+    <div class="cred-item">
+      <div class="cred-img-wrap">
+        ${t.img ? `<img src="${escHtml(t.img)}" alt="${escHtml(t.title)}" loading="lazy">` : `<div class="cred-img-placeholder">Add Image via Admin</div>`}
+      </div>
+      <div class="cred-title">${escHtml(t.title)}</div>
+      <div class="cred-text">${escHtml(t.text)}</div>
+    </div>`).join('');
+}
+
+function renderSiteInfo() {
+  const s = getSite();
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  const setHref = (id, val) => { const el = document.getElementById(id); if (el) el.href = 'mailto:' + val; };
+  set('brand-desc', s.brandDesc);
+  set('brand-quote', s.brandQuote);
+  set('stat1-num', s.stat1Num); set('stat1-label', s.stat1Label);
+  set('stat2-num', s.stat2Num); set('stat2-label', s.stat2Label);
+  set('stat3-num', s.stat3Num); set('stat3-label', s.stat3Label);
+  set('stat4-num', s.stat4Num); set('stat4-label', s.stat4Label);
+  const emailEl = document.getElementById('contact-email');
+  if (emailEl) { emailEl.textContent = s.email; emailEl.href = 'mailto:' + s.email; }
+  set('footer-desc', s.footerDesc);
+  set('contact-manifesto', s.manifesto);
+  set('footer-copy', s.copyright);
+}
+
+function renderSocials() {
+  const s = getSocials();
+  const setHref = (id, url) => { const el = document.getElementById(id); if (el) el.href = url || '#'; };
+  setHref('social-instagram', s.ig); setHref('social-facebook', s.fb);
+  setHref('social-youtube', s.yt); setHref('social-x', s.x);
+  setHref('footer-ig', s.ig); setHref('footer-fb', s.fb);
+  setHref('footer-yt', s.yt); setHref('footer-x', s.x);
+}
+
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─────────────────────────────────────────────
+// ADMIN FUNCTIONS
+// ─────────────────────────────────────────────
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('open');
+  populateAdminFields();
+  renderProductList();
+  renderAdminCatList();
+  renderAdminTrustList();
+  populateCatSelects();
+}
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+}
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function populateCatSelects() {
+  const cats = getCategories();
+  const opts = cats.map(c => `<option value="${c.id}">${escHtml(c.name)}</option>`).join('');
+  ['np-category', 'filter-category'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const prev = el.value;
+      el.innerHTML = (id === 'filter-category' ? '<option value="all">All Categories</option>' : '') + opts;
+      if (prev) el.value = prev;
+    }
+  });
+}
+
+function populateAdminFields() {
+  const s = getSite();
+  const sc = getSocials();
+  const fields = {
+    's-brand-desc': s.brandDesc, 's-brand-quote': s.brandQuote,
+    's-stat1-num': s.stat1Num, 's-stat1-label': s.stat1Label,
+    's-stat2-num': s.stat2Num, 's-stat2-label': s.stat2Label,
+    's-stat3-num': s.stat3Num, 's-stat3-label': s.stat3Label,
+    's-stat4-num': s.stat4Num, 's-stat4-label': s.stat4Label,
+    's-email': s.email, 's-footer-desc': s.footerDesc,
+    's-manifesto': s.manifesto, 's-copyright': s.copyright,
+    's-ig': sc.ig, 's-fb': sc.fb, 's-yt': sc.yt, 's-x': sc.x,
+  };
+  Object.entries(fields).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val || '';
+  });
+}
+
+function addProduct() {
+  const catId = document.getElementById('np-category').value;
+  const name = document.getElementById('np-name').value.trim();
+  const price = document.getElementById('np-price').value.trim();
+  const img = document.getElementById('np-img').value.trim();
+  const url = document.getElementById('np-url').value.trim();
+  if (!name || !catId) { alert('Product name and category are required.'); return; }
+  const prods = getProducts();
+  prods.push({ id: 'p' + Date.now(), catId, name, price: price || '—', img, url: url || '#' });
+  SS('products', prods);
+  ['np-name','np-price','np-img','np-url'].forEach(id => document.getElementById(id).value = '');
+  renderProductList(); renderCategories();
+}
+
+function deleteProduct(id) {
+  if (!confirm('Delete this product?')) return;
+  SS('products', getProducts().filter(p => p.id !== id));
+  renderProductList(); renderCategories();
+}
+
+function renderProductList() {
+  const filterCat = document.getElementById('filter-category')?.value || 'all';
+  const prods = getProducts().filter(p => filterCat === 'all' || p.catId === filterCat);
+  const cats = getCategories();
+  const el = document.getElementById('admin-product-list');
+  if (!el) return;
+  if (!prods.length) { el.innerHTML = '<p style="font-size:0.8rem;color:var(--text-muted);">No products found.</p>'; return; }
+  el.innerHTML = prods.map(p => {
+    const cat = cats.find(c => c.id === p.catId);
+    return `
+      <div class="admin-product-item">
+        <div class="admin-product-img">
+          ${p.img ? `<img src="${escHtml(p.img)}" alt="">` : `<div class="admin-product-img-placeholder">No img</div>`}
+        </div>
+        <div class="admin-product-info">
+          <div class="admin-product-name">${escHtml(p.name)}</div>
+          <div class="admin-product-meta">${escHtml(p.price)} · ${escHtml(cat?.name || 'Unknown')}</div>
+        </div>
+        <div class="admin-product-actions">
+          <button class="admin-btn admin-btn-outline" onclick="editProduct('${p.id}')">Edit</button>
+          <button class="admin-btn admin-btn-danger" onclick="deleteProduct('${p.id}')">Delete</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function editProduct(id) {
+  const prods = getProducts();
+  const p = prods.find(x => x.id === id);
+  if (!p) return;
+  const newName = prompt('Product Name:', p.name);
+  if (newName === null) return;
+  const newPrice = prompt('Price:', p.price);
+  const newImg = prompt('Image URL:', p.img);
+  const newUrl = prompt('Destination URL:', p.url);
+  p.name = newName || p.name;
+  p.price = newPrice !== null ? newPrice : p.price;
+  p.img = newImg !== null ? newImg : p.img;
+  p.url = newUrl !== null ? newUrl : p.url;
+  SS('products', prods);
+  renderProductList(); renderCategories();
+}
+
+function addCategory() {
+  const name = document.getElementById('nc-name').value.trim();
+  const desc = document.getElementById('nc-desc').value.trim();
+  const url = document.getElementById('nc-url').value.trim();
+  if (!name) { alert('Category name is required.'); return; }
+  const cats = getCategories();
+  cats.push({ id: 'c' + Date.now(), name, desc, seeMoreUrl: url || '#' });
+  SS('categories', cats);
+  ['nc-name','nc-desc','nc-url'].forEach(id => document.getElementById(id).value = '');
+  renderAdminCatList(); populateCatSelects(); renderCategories();
+}
+
+function deleteCategory(id) {
+  if (!confirm('Delete this category? Products in it will remain but be uncategorized.')) return;
+  SS('categories', getCategories().filter(c => c.id !== id));
+  renderAdminCatList(); populateCatSelects(); renderCategories();
+}
+
+function renderAdminCatList() {
+  const cats = getCategories();
+  const el = document.getElementById('admin-cat-list');
+  if (!el) return;
+  el.innerHTML = cats.map(c => `
+    <div class="admin-product-item">
+      <div class="admin-product-info">
+        <div class="admin-product-name">${escHtml(c.name)}</div>
+        <div class="admin-product-meta">${escHtml(c.desc)}</div>
+      </div>
+      <div class="admin-product-actions">
+        <button class="admin-btn admin-btn-danger" onclick="deleteCategory('${c.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function addTrustItem() {
+  const title = document.getElementById('nt-title').value.trim();
+  const text = document.getElementById('nt-text').value.trim();
+  const img = document.getElementById('nt-img').value.trim();
+  if (!title) { alert('Title is required.'); return; }
+  const items = getTrust();
+  items.push({ id: 't' + Date.now(), title, text, img });
+  SS('trust', items);
+  ['nt-title','nt-text','nt-img'].forEach(id => document.getElementById(id).value = '');
+  renderAdminTrustList(); renderCredibility();
+}
+
+function deleteTrustItem(id) {
+  if (!confirm('Delete this trust item?')) return;
+  SS('trust', getTrust().filter(t => t.id !== id));
+  renderAdminTrustList(); renderCredibility();
+}
+
+function renderAdminTrustList() {
+  const items = getTrust();
+  const el = document.getElementById('admin-trust-list');
+  if (!el) return;
+  el.innerHTML = items.map(t => `
+    <div class="admin-product-item">
+      <div class="admin-product-img">
+        ${t.img ? `<img src="${escHtml(t.img)}" alt="">` : `<div class="admin-product-img-placeholder">No img</div>`}
+      </div>
+      <div class="admin-product-info">
+        <div class="admin-product-name">${escHtml(t.title)}</div>
+        <div class="admin-product-meta">${escHtml(t.text.slice(0,60))}...</div>
+      </div>
+      <div class="admin-product-actions">
+        <button class="admin-btn admin-btn-danger" onclick="deleteTrustItem('${t.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function saveSiteInfo() {
+const g = id => document.getElementById(id)?.value || '';
+  SS('site', {
+    brandDesc: g('s-brand-desc'), brandQuote: g('s-brand-quote'),
+    stat1Num: g('s-stat1-num'), stat1Label: g('s-stat1-label'),
+    stat2Num: g('s-stat2-num'), stat2Label: g('s-stat2-label'),
+    stat3Num: g('s-stat3-num'), stat3Label: g('s-stat3-label'),
+    stat4Num: g('s-stat4-num'), stat4Label: g('s-stat4-label'),
+    email: g('s-email'), footerDesc: g('s-footer-desc'),
+    manifesto: g('s-manifesto'), copyright: g('s-copyright'),
+  });
+  renderSiteInfo();
+  showToast('Site info saved!');
+}
+
+function saveSocials() {
+  SS('socials', {
+    ig: document.getElementById('s-ig')?.value || '#',
+    fb: document.getElementById('s-fb')?.value || '#',
+    yt: document.getElementById('s-yt')?.value || '#',
+    x: document.getElementById('s-x')?.value || '#',
+  });
+  renderSocials();
+  showToast('Socials saved!');
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'5rem', right:'2rem', background:'var(--gold)',
+    color:'var(--navy)', padding:'0.6rem 1.2rem', fontSize:'0.75rem',
+    fontWeight:'700', letterSpacing:'0.15em', textTransform:'uppercase',
+    zIndex:'99999', opacity:'1', transition:'opacity 0.5s'
+  });
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 500); }, 2000);
+}
+
+// ─────────────────────────────────────────────
+// CATEGORY PAGE ROUTING
+// ─────────────────────────────────────────────
+const MAIN_SECTIONS = ['site-header','home','collections','brand-story','credibility','contact','footer'];
+
+function showCategoryPage(catId) {
+  const cat = getCategories().find(c => c.id === catId);
+  if (!cat) return;
+  const prods = getProducts().filter(p => p.catId === catId).reverse();
+
+  document.getElementById('cat-page-title').textContent = cat.name;
+  document.getElementById('cat-page-desc').textContent = cat.desc;
+  document.getElementById('cat-page-count').textContent = prods.length + ' product' + (prods.length !== 1 ? 's' : '') + ' in this collection';
+
+  document.getElementById('cat-page-grid').innerHTML = prods.length > 0
+    ? prods.map(p => `
+        <a class="product-card" href="${escHtml(p.url && p.url !== '#' ? p.url : 'javascript:void(0)')}"
+           ${p.url && p.url !== '#' ? 'target="_blank" rel="noopener"' : ''}>
+          <div class="product-img-wrap">
+            ${p.img
+              ? `<img src="${escHtml(p.img)}" alt="${escHtml(p.name)}" loading="lazy">`
+              : `<div class="product-img-placeholder"><div class="placeholder-icon">◈</div><div class="placeholder-text">Image</div></div>`}
+          </div>
+          <div class="product-info">
+            <div class="product-name">${escHtml(p.name)}</div>
+            <div class="product-price">${escHtml(p.price)}</div>
+          </div>
+        </a>`).join('')
+    : `<div style="color:var(--text-muted);font-size:0.85rem;grid-column:1/-1;">No products in this collection yet.</div>`;
+
+  // Hide main site, show category page
+  MAIN_SECTIONS.forEach(id => {
+    const el = document.getElementById(id) || document.querySelector(id === 'footer' ? 'footer' : '#'+id);
+    if (el) el.style.display = 'none';
+  });
+  document.querySelector('footer').style.display = 'none';
+  document.getElementById('cat-page').style.display = 'block';
+  document.querySelector('.admin-trigger').style.display = 'none';
+  window.scrollTo(0, 0);
+  location.hash = 'cat/' + catId;
+}
+
+function showMainSite() {
+  MAIN_SECTIONS.forEach(id => {
+    const el = document.getElementById(id) || (id === 'footer' ? document.querySelector('footer') : null);
+    if (el) el.style.display = '';
+  });
+  document.querySelector('footer').style.display = '';
+  document.getElementById('cat-page').style.display = 'none';
+  document.querySelector('.admin-trigger').style.display = '';
+  history.replaceState(null, '', location.pathname);
+  window.scrollTo(0, 0);
+}
+
+// Handle back button
+window.addEventListener('hashchange', () => {
+  if (!location.hash.startsWith('#cat/')) showMainSite();
+});
+// ─────────────────────────────────────────────
+// ADMIN LOGIN
+// ─────────────────────────────────────────────
+const ADMIN_PASSWORD = 'adinitial26';
+let adminUnlocked = false;
+
+function openLoginModal() {
+  if (adminUnlocked) { openAdmin(); return; }
+  const m = document.getElementById('login-modal');
+  m.style.display = 'flex';
+  document.getElementById('login-pw').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  setTimeout(() => document.getElementById('login-pw').focus(), 50);
+}
+function closeLoginModal() {
+  document.getElementById('login-modal').style.display = 'none';
+}
+function doLogin() {
+  const pw = document.getElementById('login-pw').value;
+  if (pw === ADMIN_PASSWORD) {
+    adminUnlocked = true;
+    closeLoginModal();
+    openAdmin();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('login-pw').value = '';
+    document.getElementById('login-pw').focus();
+  }
+}
+
+// ─────────────────────────────────────────────
+// HEADER SCROLL
+// ─────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─────────────────────────────────────────────
+// MOBILE MENU
+// ─────────────────────────────────────────────
+function toggleMenu() {
+  const nav = document.getElementById('mobile-nav');
+  const ham = document.getElementById('ham-btn');
+  nav.classList.toggle('open');
+  ham.classList.toggle('active');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.getElementById('ham-btn').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ─────────────────────────────────────────────
+// SCROLL REVEAL
+// ─────────────────────────────────────────────
+function observeReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (!el.classList.contains('visible')) obs.observe(el);
+  });
+}
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  observeReveal();
+});
+</script>
+</body>
+</html>
